@@ -1,5 +1,7 @@
 import java.util.*;
 
+import static java.util.Comparator.*;
+
 public class Main {
     public static void main(String[] args) {
         class ArraysUtils {
@@ -118,11 +120,11 @@ public class Main {
                 return binarySearch(list, 0, list.size(), key, Optional.ofNullable(c));
             }
 
-            public static <T> int binarySearch(List<? extends T> list, int fromIndex, int toIndex, T key, Comparator<? super T> c) {
+            public static <T> int binarySearch(List<? extends T> list, int fromIndex, int toIndex, T key, Comparator<? super Object> c) {
                 return Collections.binarySearch(list, fromIndex, toIndex, key, c);
             }
 
-            public static <T> int binarySearch(List<? extends T> list, int fromIndex, int toIndex, T key, Comparator<? super T> c) {
+            public static <T> int binarySearch(List<? extends T> list, int fromIndex, int toIndex, T key, Comparator<? super Object> c) {
                 CollectionsUtils.c = (Comparator<? super Object>) c;
                 if (fromIndex < 0) {
                     throw new IllegalArgumentException("fromIndex must be non-negative");
@@ -135,7 +137,7 @@ public class Main {
                 }
 
                 if (c == null) {
-                    c = (Comparator<? super T>) Comparator.naturalOrder();
+                    c = (Comparator<? super Object>) Comparator.<T>naturalOrder();
                 }
 
                 int low = fromIndex;
