@@ -99,7 +99,7 @@ public class Main {
 
                     if (cmp.compare(midVal, key) < 0) {
                         low = mid + 1;
-                    } else if (cmp.compare(midVal, key) > 0) ;
+                    } else cmp.compare(midVal, key);
                 }
                 return low;
             }
@@ -120,11 +120,11 @@ public class Main {
                 return binarySearch(list, 0, list.size(), key, Optional.ofNullable(c));
             }
 
-            public static <T> int binarySearch(List<? extends T> list, int fromIndex, int toIndex, T key, Comparator<? super Object> c) {
+            public static <T> int binarySearch(List<? extends T> list, int fromIndex, int toIndex, T key, Comparator<? super T> c) {
                 return Collections.binarySearch(list, fromIndex, toIndex, key, c);
             }
 
-            public static <T> int binarySearch(List<? extends T> list, int fromIndex, int toIndex, T key, Comparator<? super Object> c) {
+            public static <T extends Comparable<? super T>> int binarySearch(List<? extends T> list, int fromIndex, int toIndex, T key, Comparator<? super T> c) {
                 CollectionsUtils.c = (Comparator<? super Object>) c;
                 if (fromIndex < 0) {
                     throw new IllegalArgumentException("fromIndex must be non-negative");
@@ -137,7 +137,7 @@ public class Main {
                 }
 
                 if (c == null) {
-                    c = (Comparator<? super Object>) Comparator.<T>naturalOrder();
+                    c = Comparator.<T>naturalOrder();
                 }
 
                 int low = fromIndex;
