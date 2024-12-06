@@ -1,7 +1,5 @@
 import java.util.*;
 
-import static java.util.Comparator.*;
-
 public class Main {
     public static void main(String[] args) {
         class ArraysUtils {
@@ -69,7 +67,7 @@ public class Main {
                 return Arrays.binarySearch(a, fromIndex, toIndex, key, c);
             }
 
-            private static <ByteComparator> int binarySearch(byte[] a, int fromIndex, int toIndex, byte key, ByteComparator cmp) {
+            private static <ByteComparator> int binarySearch(byte[] a, int fromIndex, int toIndex, byte key, Comparator <Byte> cmp) {
                 int low = fromIndex;
                 int high = toIndex - 1;
 
@@ -89,7 +87,7 @@ public class Main {
                 return -(low + 1); // key not found
             }
 
-            private static <CharComparator> int binarySearch(char[] a, int fromIndex, int toIndex, char key, CharComparator cmp) {
+            private static <CharComparator> int binarySearch(char[] a, int fromIndex, int toIndex, char key, Comparator <Character> cmp) {
                 int low = fromIndex;
                 int high = toIndex - 1;
 
@@ -121,7 +119,7 @@ public class Main {
             }
 
             public static <T> int binarySearch(List<? extends T> list, int fromIndex, int toIndex, T key, Comparator<? super T> c) {
-                return Collections.binarySearch(list, fromIndex, toIndex, key, c);
+                return CollectionsUtils.binarySearch(list, fromIndex, toIndex, key, c);
             }
 
             public static <T extends Comparable<? super T>> int binarySearch(List<? extends T> list, int fromIndex, int toIndex, T key, Comparator<? super T> c) {
